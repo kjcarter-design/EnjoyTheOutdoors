@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PAGE_PATHS } from './constants';
-import { Home } from '@mui/icons-material';
+import Home from './components/pages/Home';
 import NationalParks from './components/pages/NationalParks';
 import Mountains from './components/pages/Mountains';
 import { Box } from '@mui/material';
