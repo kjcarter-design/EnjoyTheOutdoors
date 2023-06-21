@@ -15,6 +15,7 @@ export default function NationalParks() {
     const selectedPark = parks.find(park => park.LocationID === id);
     setPark(selectedPark);
   }, [id, parks]);
+  
   useEffect(() => {
     console.log(park)
   }, [park]);

@@ -44,13 +44,6 @@ export default function SearchBar() {
     }
   };
 
-
-  useEffect(() => {
-    console.log(parks)
-    console.log(mountains)
-  }, [parks, mountains])
-
-
 	return (
 		<Box>
 			<Card sx={{margin: '1rem', padding: '1.5rem'}}>
