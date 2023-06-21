@@ -4,4 +4,4 @@ export const PAGE_PATHS = {
   MOUNTAINS: '/mountains/'
 }
 
-export const NPS_API_KEY = process.env.REACT_NPS_API_KEY
+export const NPS_API_KEY = process.env.REACT_APP_NPS_API_KEY
