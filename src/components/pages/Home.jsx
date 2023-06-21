@@ -19,18 +19,11 @@ export default function Home() {
 		setValue(event.target.value);
 	};
 
-  useEffect(() => {
-    console.log(`State: ${state}`)
-    console.log(`Parks:`)
-    console.log(parks)
-    console.log(`Loading?: ${isLoading}`)
-    console.log(`error: ${error}`)
-  }, [value]);
 
 	return (
 		<Box sx={{ width: '100vw', height: '100vh', margin: '0' }}>
 			<Box sx={{}}>
-				<img src={parkimage} alt='National Park' />
+				{/* <img src={parkimage} alt='National Park' /> */}
 			</Box>
 			<Grid>
 				<FormControl>

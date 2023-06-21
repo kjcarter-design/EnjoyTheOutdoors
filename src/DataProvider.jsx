@@ -38,7 +38,8 @@ export  const NPSContextProvider = ({children}) => {
   const [mountains, setMountains] = useState([]);
 
   useEffect(() => {
-    setParks(nationalParksData)
+    const allParks = nationalParksData.parks.flat();
+  setParks(allParks);
     setLocations(parkLocationsData)
     setParkTypes(parkTypesData)
     setMountains(mountainsData)
@@ -54,7 +55,7 @@ export  const NPSContextProvider = ({children}) => {
 */
 
   return (
-    <NPSContext.Provider value={ state, dispatch, parks, setParks, locations, setLocations, parkTypes, setParkTypes, mountains, setMountains }>
+    <NPSContext.Provider value={{ state, dispatch, parks, setParks, locations, setLocations, parkTypes, setParkTypes, mountains, setMountains }}>
       {children}
     </NPSContext.Provider>
   );

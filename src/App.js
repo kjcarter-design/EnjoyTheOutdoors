@@ -5,19 +5,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { NPSContextProvider, NPSContext } from './DataProvider';
+import { NPSContextProvider } from './DataProvider';
 
 function App() {
-
-	const { parks, locations, parkTypes, mountains } = useContext(NPSContext);
-
-	useEffect(() => {
-		console.log(parks)
-		console.log(locations)
-		console.log(parkTypes)
-		console.log(mountains)
-	  },[parks, locations, parkTypes, mountains])
-
 	return (
 		<Box sx={{ width: '100vw', height: '100vh' }}>
 			<NPSContextProvider>
