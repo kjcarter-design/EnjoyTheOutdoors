@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { NPSContext } from '../DataProvider';
 import axios from 'axios';
-import { NPS_API_KEY } from '../constants';
 
 export default function useFetchNPS() {
     const { parks, setParks } = useContext(NPSContext);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    // TODO: Fix hardcoding of api key
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -16,7 +16,7 @@ export default function useFetchNPS() {
                     method: 'GET',
                     url: 'https://jonahtaylor-national-park-service-v1.p.rapidapi.com/parks',
                     headers: {
-                        'X-Api-Key': NPS_API_KEY,
+                        'X-Api-Key': 'CWhhFeJRYd6ortLjtp6k9XZLHEJuLYirMZv1rfWD',
                         'X-RapidAPI-Key': '73d99d75e2msh095dfc413d2cb87p19ddacjsnef9652c08e69',
                         'X-RapidAPI-Host': 'jonahtaylor-national-park-service-v1.p.rapidapi.com'
                     }
