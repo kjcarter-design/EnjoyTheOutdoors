@@ -8,6 +8,7 @@ export default function useFetchNPS() {
     const [error, setError] = useState(null);
 
     // TODO: Fix hardcoding of api key
+/*
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -35,7 +36,7 @@ export default function useFetchNPS() {
 
         fetchData();
     }, [setParks]);
-
+*/
     return {
         parks,
         isLoading,
