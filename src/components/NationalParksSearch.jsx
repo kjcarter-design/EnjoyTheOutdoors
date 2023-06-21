@@ -1,13 +1,18 @@
 import { Search } from '@mui/icons-material'
 import { Autocomplete, Box, Grid, TextField, IconButton } from '@mui/material'
-import React from 'react'
+import React, {useContext} from 'react'
+import { NPSContext } from '../DataProvider'
 
 export default function NationalParksSearch() {
+  const {parks, parkTypes, locations} = useContext(NPSContext)
+
+  console.log(parks)
+
   return (
     <Box>
-      <Grid container spacing={2} alignItems='center' justfyContent='center'>
+      <Grid container spacing={2} alignItems='center' justifyContent='center'>
         <Grid item xs={10.5}>
-          <Autocomplete renderInput={(params) => (
+          <Autocomplete options={parks} renderInput={(params) => (
             <TextField
               {...params}
               variant='standard'

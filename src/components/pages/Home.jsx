@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Grid } from '@mui/material';
 import React, { useState, useEffect, useContext } from 'react';
-import parks from '../../assets/parks.png';
+import parkimage from '../../assets/parks.png';
 import NationalParksSearch from '../NationalParksSearch';
 import MountainsSearch from '../MountainsSearch';
 import Radio from '@mui/material/Radio';
@@ -30,7 +30,7 @@ export default function Home() {
 	return (
 		<Box sx={{ width: '100vw', height: '100vh', margin: '0' }}>
 			<Box sx={{}}>
-				<img src={parks} alt='National Park' />
+				<img src={parkimage} alt='National Park' />
 			</Box>
 			<Grid>
 				<FormControl>

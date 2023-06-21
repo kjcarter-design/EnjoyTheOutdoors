@@ -1,5 +1,17 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
 
+/*
+import * as nationalParksData from './assets/data/nationalparks.json';
+import * as locationsData from './assets/data/locations.json';
+import * as parkTypesData from './assets/data/parktypes.json';
+import * as mountainsData from './assets/data/mountains.json';
+*/
+
+const nationalParksData = require('./assets/data/nationalparks.json')
+const parkLocationsData = require('./assets/data/locations.json')
+const parkTypesData = require('./assets/data/parktypes.json')
+const mountainsData = require('./assets/data/mountains.json')
+
 export const NPSContext = createContext();
 
 const initialState = {
@@ -20,22 +32,29 @@ function reducer(state, action) {
 
 export  const NPSContextProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [parks, setParks] = useState(
-    JSON.parse(localStorage.getItem('parks')) || []
-  );
-  const [mountains, setMountains] = useState(
-    JSON.parse(localStorage.getItem('Mountains')) || []
-  );
+  const [parks, setParks] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [parkTypes, setParkTypes] = useState([]);
+  const [mountains, setMountains] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('parks', JSON.stringify(parks));
-  }, [parks]);
+    setParks(nationalParksData)
+    setLocations(parkLocationsData)
+    setParkTypes(parkTypesData)
+    setMountains(mountainsData)
+  },[])
+
+  /*
   useEffect(() => {
-    localStorage.setItem('mountains', JSON.stringify(mountains));
-  }, [mountains]);
+    console.log(parks)
+    console.log(locations)
+    console.log(parkTypes)
+    console.log(mountains)
+  },[parks, locations, parkTypes, mountains])
+*/
 
   return (
-    <NPSContext.Provider value={{ state, dispatch, parks, setParks, mountains, setMountains }}>
+    <NPSContext.Provider value={ state, dispatch, parks, setParks, locations, setLocations, parkTypes, setParkTypes, mountains, setMountains }>
       {children}
     </NPSContext.Provider>
   );
