@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup } from '@mui/material';
 import React, { useState, useEffect, useContext } from 'react';
-import NationalParksSearch from '../NationalParksSearch';
+
 
 
 export default function NationalParks() {
@@ -36,11 +36,6 @@ export default function NationalParks() {
 					</RadioGroup>
 				</FormControl>
         <Grid item>
-          <Card>
-            <CardContent>
-              <NationalParksSearch />
-            </CardContent>
-          </Card>
         </Grid>
       </Grid>
     </Box>
