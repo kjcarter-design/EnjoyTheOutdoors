@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup } from '@mui/material';
 import React, { useState, useEffect, useContext } from 'react';
+import SearchBar from './../SearchBar';
 
 
 
@@ -14,28 +15,8 @@ export default function NationalParks() {
   return (
     <Box sx={{ width: '100vw', height: '100vh', margin: '0' }}>
       <Grid>
-      <FormControl>
-					<FormLabel id='park-type-radio'>Search for:</FormLabel>
-					<RadioGroup
-						row
-						aria-labelledby='park-type-radio'
-						name='row-radio-buttons-group'
-						value={value}
-						onChange={handleChange}
-					>
-						<FormControlLabel
-							value='park-name'
-							control={<Radio />}
-							label='Park name'
-						/>
-            <FormControlLabel 
-              value='locations' 
-              control={<Radio />} 
-              label='Locations' 
-            />
-					</RadioGroup>
-				</FormControl>
         <Grid item>
+          <SearchBar />
         </Grid>
       </Grid>
     </Box>
