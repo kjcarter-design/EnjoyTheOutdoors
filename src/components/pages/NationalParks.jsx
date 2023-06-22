@@ -29,9 +29,14 @@ export default function NationalParks() {
         <Grid item>
           {park !== null ? (
             <Typography variant="h6" color="gray" sx={{ textAlign: "center" }}>
-              {" "}
               {park.LocationName}
             </Typography>
+             <Typography variant="h7" color="gray" sx={{ textAlign: "center" }}>
+             {park.Address}{', '}{park.City}{', '}{park.State}{', '}{park.Zipcode}
+           </Typography>
+            <Typography variant="h7" color="gray" sx={{ textAlign: "center" }}>
+            {park.Phone}{', '}{park.Fax}{', '}
+          </Typography>
           ) : null}
         </Grid>
       </Grid>
