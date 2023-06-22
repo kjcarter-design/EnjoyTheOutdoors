@@ -20,8 +20,8 @@ export default function Home() {
 				}}
 			></Box>
 			<Grid>
-        <Grid item>
-					<SearchBar />
+        <Grid item sx={{margin: '1em'}}>
+					<SearchBar/>
 				</Grid>
 			</Grid>
 		</Box>
