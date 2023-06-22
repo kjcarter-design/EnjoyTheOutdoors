@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Link, Typography } from "@mui/material";
 import React, { useState, useEffect, useContext } from "react";
 import SearchBar from "./../SearchBar";
 import { NPSContext } from "../../DataProvider";
@@ -22,21 +22,42 @@ export default function NationalParks() {
 
   return (
     <Box sx={{ width: "100vw", height: "100vh", margin: "0" }}>
-      <Grid>
-        <Grid item>
+      <Grid container>
+        <Grid item xs={12}>
           <SearchBar />
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           {park !== null ? (
-            <Typography variant="h6" color="gray" sx={{ textAlign: "center" }}>
-              {park.LocationName}
-            </Typography>
-             <Typography variant="h7" color="gray" sx={{ textAlign: "center" }}>
-             {park.Address}{', '}{park.City}{', '}{park.State}{', '}{park.Zipcode}
-           </Typography>
-            <Typography variant="h7" color="gray" sx={{ textAlign: "center" }}>
-            {park.Phone}{', '}{park.Fax}{', '}
-          </Typography>
+            <Grid container sx={{
+              margin: '1rem',
+              textAlign: "center"
+
+            }}>
+              <Grid item xs={12}>
+                <Typography variant="h6" color="gray">
+                  {park.LocationName}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h7" color="gray">
+                {park.Address}, {park.City}, {park.State}, {park.ZipCode}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h7" color="gray">
+                Phone: {park.Phone}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h7" color="gray">
+                Fax: {park.Fax}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                {(park.Visit)?
+                  <Link href={park.Visit} target="_blank" rel="noreferrer">Visit website</Link>: null}
+              </Grid>
+            </Grid>
           ) : null}
         </Grid>
       </Grid>
