@@ -26,7 +26,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
   const navigate = useNavigate();
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState('null');
   const [searchValue, setSearchValue] = useState(null);
   const { parks, parkTypes, locations, mountains } = useContext(NPSContext);
   
