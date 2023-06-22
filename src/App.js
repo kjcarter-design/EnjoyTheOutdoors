@@ -9,7 +9,7 @@ import { NPSContextProvider } from './DataProvider';
 
 function App() {
 	return (
-		<Box sx={{ width: '100vw', height: '100vh' }}>
+		<Box sx={{ width: '100vw', height: '100vh', backgroundColor: 'whitesmoke'}}>
 			<NPSContextProvider>
 				<Router>
 				<Header />

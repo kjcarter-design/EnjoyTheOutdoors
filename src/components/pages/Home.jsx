@@ -5,6 +5,7 @@ import SearchBar from "../SearchBar";
 import { CenterFocusStrong } from "@mui/icons-material";
 
 export default function Home() {
+
   return (
     <Box sx={{ width: "100vw", height: "100vh", margin: "0" }}>
       <Box
@@ -63,4 +64,5 @@ export default function Home() {
         </Grid>
       </Grid>
     </Box>
+  );
 }
