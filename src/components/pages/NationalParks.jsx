@@ -1,10 +1,8 @@
-import { Box, CircularProgress, Grid } from '@mui/material';
-import React, { useState, useEffect, useContext } from 'react';
-import SearchBar from './../SearchBar';
-import { NPSContext } from '../../DataProvider';
-import { useParams } from 'react-router-dom';
-
-
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import React, { useState, useEffect, useContext } from "react";
+import SearchBar from "./../SearchBar";
+import { NPSContext } from "../../DataProvider";
+import { useParams } from "react-router-dom";
 
 export default function NationalParks() {
   const { id } = useParams();
@@ -12,24 +10,31 @@ export default function NationalParks() {
   const [park, setPark] = useState(null);
 
   useEffect(() => {
-    const selectedPark = parks.find(park => park.LocationID === id);
+    const selectedPark = parks.find((park) => park.LocationID === id);
     setPark(selectedPark);
   }, [id, parks]);
-  
+
   useEffect(() => {
-    console.log(park)
+    console.log(park);
   }, [park]);
 
-  if (!park) <CircularProgress/>;
-  
+  if (!park) <CircularProgress />;
 
   return (
-    <Box sx={{ width: '100vw', height: '100vh', margin: '0' }}>
+    <Box sx={{ width: "100vw", height: "100vh", margin: "0" }}>
       <Grid>
         <Grid item>
           <SearchBar />
         </Grid>
+        <Grid item>
+          {park !== null ? (
+            <Typography variant="h6" color="gray" sx={{ textAlign: "center" }}>
+              {" "}
+              {park.LocationName}
+            </Typography>
+          ) : null}
+        </Grid>
       </Grid>
     </Box>
-  )
+  );
 }
