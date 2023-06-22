@@ -1,16 +1,27 @@
-import { Box, Card, CardContent, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup } from '@mui/material';
+import { Box, CircularProgress, Grid } from '@mui/material';
 import React, { useState, useEffect, useContext } from 'react';
 import SearchBar from './../SearchBar';
+import { NPSContext } from '../../DataProvider';
+import { useParams } from 'react-router-dom';
 
 
 
 export default function NationalParks() {
-  const [value, setValue] = useState('park-name');
-  //const { state, dispatch, parks, setParks } = useContext(NPSContext);
-  //const { isLoading, error } = useFetchNPS();
-	const handleChange = (event) => {
-		setValue(event.target.value);
-	};
+  const { id } = useParams();
+  const { parks } = useContext(NPSContext);
+  const [park, setPark] = useState(null);
+
+  useEffect(() => {
+    const selectedPark = parks.find(park => park.LocationID === id);
+    setPark(selectedPark);
+  }, [id, parks]);
+  
+  useEffect(() => {
+    console.log(park)
+  }, [park]);
+
+  if (!park) <CircularProgress/>;
+  
 
   return (
     <Box sx={{ width: '100vw', height: '100vh', margin: '0' }}>

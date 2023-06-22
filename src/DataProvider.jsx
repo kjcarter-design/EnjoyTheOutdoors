@@ -31,7 +31,7 @@ function reducer(state, action) {
 }
 
 export const NPSContextProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 	const [parks, setParks] = useState([]);
 	const [locations, setLocations] = useState([]);
 	const [parkTypes, setParkTypes] = useState([]);
@@ -69,7 +69,7 @@ export const NPSContextProvider = ({ children }) => {
 				parkTypes,
 				setParkTypes,
 				mountains,
-				setMountains,
+        setMountains,
 			}}
 		>
 			{children}
