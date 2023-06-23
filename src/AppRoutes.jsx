@@ -5,6 +5,8 @@ import Home from './components/pages/Home';
 import NationalParks from './components/pages/NationalParks';
 import Mountains from './components/pages/Mountains';
 import { Box } from '@mui/material';
+import ParkDetails from './components/pages/ParkDetails';
+import MountainDetails from './components/pages/MountainDetails';
 
 export default function AppRoutes() {
 	return (
@@ -21,6 +23,16 @@ export default function AppRoutes() {
 					path={PAGE_PATHS.MOUNTAINS}
 					element={<Mountains />}
 				/>
+				<Route
+  key={'NationalPark'}
+  path={PAGE_PATHS.PARKS_SEARCH + '/:id'}
+  element={<ParkDetails />}
+/>
+<Route
+  key={'Mountain'}
+  path={PAGE_PATHS.MOUNTAINS + '/:id'}
+  element={<MountainDetails />}
+/>
 			</Routes>
 		</Box>
 	);
