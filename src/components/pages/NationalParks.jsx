@@ -1,66 +1,47 @@
-import { Box, CircularProgress, Grid, Link, Typography } from "@mui/material";
-import React, { useState, useEffect, useContext } from "react";
-import SearchBar from "./../SearchBar";
-import { NPSContext } from "../../DataProvider";
-import { useParams } from "react-router-dom";
+import React, { useContext, useState, useEffect } from 'react';
+import { NPSContext } from '../../DataProvider';
+import SearchBar from '../SearchBar';
+import ParkCard from '../ParkCard';
+import { Box, Grid } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 export default function NationalParks() {
-  const { id } = useParams();
-  const { parks } = useContext(NPSContext);
-  const [park, setPark] = useState(null);
+	const { parks } = useContext(NPSContext);
+	const [filteredParks, setFilteredParks] = useState(parks);
+	const { id } = useParams();
 
-  useEffect(() => {
-    const selectedPark = parks.find((park) => park.LocationID === id);
-    setPark(selectedPark);
-  }, [id, parks]);
+	useEffect(() => {
+		if (id) {
+			setFilteredParks(parks.filter((park) => park.LocationID === id));
+		} else {
+			setFilteredParks(parks);
+		}
+	}, [parks, id]);
+	return (
+		<Box
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'flex-start',
+				alignItems: 'center',
+        height: 'calc(100vh - 64px)',
+        padding: '1rem',
+        paddingTop: { xs: '64px', md: '80px' }
+			}}
+		>
+			<SearchBar
+				setFilteredOptions={setFilteredParks}
+				options={parks}
+				searchType='parks'
+			/>
 
-  useEffect(() => {
-    console.log(park);
-  }, [park]);
-
-  if (!park) <CircularProgress />;
-
-  return (
-    <Box sx={{ width: "100vw", height: "100vh", margin: "0" }}>
-      <Grid container>
-        <Grid item xs={12}>
-          <SearchBar />
-        </Grid>
-        <Grid item xs={12}>
-          {park !== null ? (
-            <Grid container sx={{
-              margin: '1rem',
-              textAlign: "center"
-
-            }}>
-              <Grid item xs={12}>
-                <Typography variant="h6" color="gray">
-                  {park.LocationName}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="h7" color="gray">
-                {park.Address}, {park.City}, {park.State}, {park.ZipCode}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="h7" color="gray">
-                Phone: {park.Phone}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="h7" color="gray">
-                Fax: {park.Fax}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                {(park.Visit)?
-                  <Link href={park.Visit} target="_blank" rel="noreferrer">Visit website</Link>: null}
-              </Grid>
-            </Grid>
-          ) : null}
-        </Grid>
-      </Grid>
-    </Box>
-  );
+			<Grid container spacing={2}>
+				{filteredParks.map((park) => (
+					<Grid item xs={12} sm={6} md={4} key={park.LocationID}>
+						<ParkCard park={park} />
+					</Grid>
+				))}
+			</Grid>
+		</Box>
+	);
 }

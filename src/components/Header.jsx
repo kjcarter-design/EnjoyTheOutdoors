@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { PAGE_PATHS } from '../constants';
+import Logo from '../assets/TheSummitSeekers.svg';
+import {
+	AppBar,
+	Avatar,
+	Box,
+	Button,
+	Container,
+	IconButton,
+	Menu,
+	MenuItem,
+	Toolbar,
+	Tooltip,
+	Typography,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+
 const pages = ['Mountains', 'National Parks'];
 const settings = ['Profile', 'Account', 'Logout'];
 
@@ -21,19 +24,12 @@ function Header() {
 	const [anchorElNav, setAnchorElNav] = useState();
 	const [anchorElUser, setAnchorElUser] = useState();
 	const navigate = useNavigate();
-	const location = useLocation();
+
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
 	};
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
-	};
-
-	const handleLogoClick = () => {
-		navigate(PAGE_PATHS.HOME, {
-			replace: false,
-			state: location,
-		});
 	};
 
 	const handleCloseNavMenu = (e) => {
@@ -50,31 +46,24 @@ function Header() {
 		setAnchorElUser(null);
 	};
 
+	const handleMountainsClick = () => {
+		navigate(PAGE_PATHS.MOUNTAINS);
+	};
+
+	const handleParksClick = () => {
+		navigate(PAGE_PATHS.PARKS_SEARCH);
+	};
+
 	return (
-		<AppBar position='static'>
+		<AppBar
+			sx={{ top: { md: '0px', xs: 'auto' }, bottom: { xs: '0px', md: 'auto' } }}
+		>
 			<Container maxWidth='xl'>
-				<Toolbar disableGutters>
-					<Button variant='text' onClick={handleLogoClick}>
-						<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-						<Typography
-							variant='h6'
-							noWrap
-							component='a'
-							href={PAGE_PATHS.HOME}
-							sx={{
-								mr: 2,
-								display: { xs: 'none', md: 'flex' },
-								fontFamily: 'monospace',
-								fontWeight: 700,
-								letterSpacing: '.3rem',
-								color: 'inherit',
-								textDecoration: 'none',
-							}}
-						>
-							LOGO
-						</Typography>
-					</Button>
-					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+				<Toolbar
+					disableGutters
+					sx={{ padding: '0', justifyContent: 'space-between' }}
+				>
+					<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
 						<IconButton
 							size='large'
 							aria-label='account of current user'
@@ -110,62 +99,87 @@ function Header() {
 							))}
 						</Menu>
 					</Box>
-					<AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+					<img
+						src={Logo}
+						alt='Logo'
+						style={{ height: '40px', marginRight: '10px' }}
+					/>
 					<Typography
 						variant='h5'
 						noWrap
 						component='a'
-						href=''
+						href='/'
 						sx={{
 							mr: 2,
-							display: { xs: 'flex', md: 'none' },
-							flexGrow: 1,
-							fontFamily: 'monospace',
-							fontWeight: 700,
-							letterSpacing: '.3rem',
+							flexGrow: 0.05,
+							fontFamily: 'roboto',
+							fontWeight: 100,
+							letterSpacing: '.2rem',
 							color: 'inherit',
 							textDecoration: 'none',
+							fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
 						}}
 					>
-						LOGO
+						The Summit Seekers
 					</Typography>
-					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-						{pages.map((page) => (
+					<Box
+						sx={{
+							justifyContent: 'center',
+							display: { xs: 'none', md: 'flex' },
+						}}
+					>
+						<Box
+							sx={{
+								display: { xs: 'none', md: 'flex' },
+								flexDirection: 'row',
+							}}
+						>
 							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
+								onClick={handleMountainsClick}
 								sx={{ my: 2, color: 'white', display: 'block' }}
 							>
-								{page}
+								Mountains
 							</Button>
-						))}
+							<Button
+								onClick={handleParksClick}
+								sx={{ my: 2, color: 'white', display: 'block' }}
+							>
+								National Parks
+							</Button>
+						</Box>
 					</Box>
 
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title='Open settings'>
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+							<IconButton
+								onClick={handleOpenUserMenu}
+								onClose={handleCloseUserMenu}
+								sx={{ p: 0 }}
+							>
 								<Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
 							</IconButton>
 						</Tooltip>
 						<Menu
-							sx={{ mt: '45px' }}
 							id='menu-appbar'
-							anchorEl={anchorElUser}
+							anchorEl={anchorElNav}
 							anchorOrigin={{
-								vertical: 'top',
-								horizontal: 'right',
+								vertical: 'bottom',
+								horizontal: 'left',
 							}}
 							keepMounted
 							transformOrigin={{
 								vertical: 'top',
-								horizontal: 'right',
+								horizontal: 'left',
 							}}
-							open={Boolean(anchorElUser)}
-							onClose={handleCloseUserMenu}
+							open={Boolean(anchorElNav)}
+							onClose={handleCloseNavMenu}
+							sx={{
+								display: { xs: 'flex', md: 'none' }, // Add this line
+							}}
 						>
-							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Typography textAlign='center'>{setting}</Typography>
+							{pages.map((page) => (
+								<MenuItem key={page} onClick={handleCloseNavMenu}>
+									<Typography textAlign='center'>{page}</Typography>
 								</MenuItem>
 							))}
 						</Menu>
