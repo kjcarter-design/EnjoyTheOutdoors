@@ -174,7 +174,7 @@ function Header() {
 							open={Boolean(anchorElNav)}
 							onClose={handleCloseNavMenu}
 							sx={{
-								display: { xs: 'flex', md: 'none' }, // Add this line
+								display: { xs: 'flex', md: 'none' }
 							}}
 						>
 							{pages.map((page) => (
