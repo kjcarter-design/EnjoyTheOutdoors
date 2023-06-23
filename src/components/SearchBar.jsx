@@ -124,19 +124,20 @@ export default function SearchBar({ setFilteredOptions, options, searchType }) {
 								/>
 							</Grid>
 						)}
-						<Grid item xs={6}>
-							<FormControlLabel
-								control={
-									<Checkbox
-										checked={useLocationFilter}
-										onChange={(event) =>
-											setUseLocationFilter(event.target.checked)
-										}
-									/>
-								}
-								label='State'
-							/>
-						</Grid>
+						{location.pathname.includes('parks') && (
+							<Grid item xs={6}>
+								<FormControlLabel
+									control={
+										<Checkbox
+											checked={useLocationFilter}
+											onChange={(event) =>
+												setUseLocationFilter(event.target.checked)
+											}
+										/>
+									}
+									label='State'
+								/>
+							</Grid>)}
 						{useLocationFilter && (
 							<Grid item xs={6}>
 								<Autocomplete
