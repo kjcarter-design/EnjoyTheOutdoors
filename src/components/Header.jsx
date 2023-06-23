@@ -21,15 +21,12 @@ const pages = ['Mountains', 'National Parks'];
 
 function Header() {
 	const [anchorElNav, setAnchorElNav] = useState();
-	const [ setAnchorElUser] = useState();
 	const navigate = useNavigate();
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
 	};
-	const handleOpenUserMenu = (event) => {
-		setAnchorElUser(event.currentTarget);
-	};
+
 
 	const handleCloseNavMenu = (e) => {
 		console.log(e.target.innerHTML);
@@ -41,9 +38,6 @@ function Header() {
 		setAnchorElNav();
 	};
 
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
-	};
 
 	const handleMountainsClick = () => {
 		navigate(PAGE_PATHS.MOUNTAINS);
@@ -151,8 +145,6 @@ function Header() {
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title='Open settings'>
 							<IconButton
-								onClick={handleOpenUserMenu}
-								onClose={handleCloseUserMenu}
 								sx={{ p: 0 }}
 							>
 								<Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
