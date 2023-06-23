@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { NPSContext } from '../../DataProvider';
 import { Box, Typography } from '@mui/material';
 import { sunTimes } from '../../helpers/sunshine'
+import { getState } from '../../helpers/getState';
 
 export default function MountainDetails() {
 	const { mountains } = useContext(NPSContext);
@@ -19,6 +20,14 @@ export default function MountainDetails() {
 	}
 
   const [sunrise, sunset] = sunTimes(mountain.coords.lat, mountain.coords.lng);
+
+	useEffect(() => {
+		getState(mountain.coords)
+	
+		return cleanUp = () => {
+			
+		}
+	}, []);
 
 	return (
 		
