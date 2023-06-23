@@ -18,11 +18,10 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 
 const pages = ['Mountains', 'National Parks'];
-const settings = ['Profile', 'Account', 'Logout'];
 
 function Header() {
 	const [anchorElNav, setAnchorElNav] = useState();
-	const [anchorElUser, setAnchorElUser] = useState();
+	const [ setAnchorElUser] = useState();
 	const navigate = useNavigate();
 
 	const handleOpenNavMenu = (event) => {
